@@ -5,6 +5,7 @@ JS Password Generator using DOM Manipulation to add design to page
 
 - Create an application that generates a random password based on user's criteria preferences.
 
+
 # Requirements include:
 
 - When prompted, the User must choose
@@ -15,6 +16,15 @@ And a preference for characters to include in the password including upper and l
 
 - Application must be styled from the JS file.
 
+
 # Known Issues
 
 - Knowledge of html page styling from js file is limited so trying to get page to look exactly as envisioned, within time constraints, was not fully recognized.
+
+# Submitted App
+
+https://github.com/jenneration/hw3PasswordGenerator
+https://jenneration.github.io/hw3PasswordGenerator/
+
+![password generator demo](./Assets/AppScreenShot.png)
+

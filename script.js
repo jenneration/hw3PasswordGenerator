@@ -24,12 +24,12 @@ generateBtn.addEventListener("click", function(event) {
     generatePassword();
 });
 
-//Initiate user preference for password length
+//Initiate user password criteria
 function generatePassword() {
     //Ask user for password length; change input to NUMBER
     var pwLength = (prompt("Choose a password length between 8 and 128."));
 
-    //Create empty criteria array/ensure previous criteria choices reset to empty;
+    //Create criteria array/ensure previous criteria choices reset to empty;
      var pwArray = [];
 
     //Validate pwLength contains numbers only
@@ -43,16 +43,16 @@ function generatePassword() {
 
     console.log(pwLength);
 
-    //Function: ask for more password criteria, validates at least one selection, build up possible choices
+    //Function: ask for more password criteria, validate at least one selection, build critera array
     var criteria = function askCriteria() {
    
-    // Confirm remaining user password criteria preference
+    // Confirm password preferred criteria
     var confirmNumbers = confirm("Should password contain numbers?");
     var confirmUpper = confirm("Uppercase letters?");
     var confirmLower = confirm("Lowercase letters?");
     var confirmSpecial = confirm("Special characters?");
 
-    //Validate: If all negatives, alert and repeat criteria questioning
+    //Validate at least once criteria selection: If all negatives, alert and repeat
     if (!confirmNumbers && !confirmUpper && !confirmLower && !confirmSpecial) {
         alert("OOPS! You must choose at least one character criteria.")   
         askCriteria();
@@ -103,7 +103,6 @@ function generatePassword() {
     //Print generated password to HMTL text area input
     newPassword.innerText = passwordJoin;      
 }
-
 //End of generator function
 
 //PART 2 - Styling HTML
@@ -121,20 +120,22 @@ var password = document.querySelector("#password");
 var cardBtn = document.querySelector(".btn");
 var body = document.querySelector("body");
 var btn = document.querySelector(".btn");
+var footer = document.querySelector("footer");
 
 
 var bg = `background:radial-gradient(#383838, #232323, #0d0d0d, #000);`
-body.style.backgroundImage = "url('assets/toppng.com-un-barrel-png-james-bond-spiral-vector-800x578.png')";
+body.style.backgroundImage = bg;
+body.style.backgroundImage = "url('assets/pngkit_barrel-png_2066813.png')";
 body.style.backgroundRepeat = "no-repeat";
-body.style.backgroundImage = "width:100%"
+body.style.backgroundImage = "height:100%"
 body.style.backgroundSize = "cover";
 
 body.style.height = "100%"
 body.style.overflow = "hidden";
 
 wrap.style.overflow = "hidden";
-h1.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
-h1.style.fontSize = "65px";
+h1.style.fontFamily = "Special Elite, Courier, Serif";
+h1.style.fontSize = "50px";
 h1.style.fontWeight = "800";
 h1.style.color = "red";
 
@@ -142,32 +143,34 @@ card.style.backgroundColor = "#0d0d0d";
 card.style.border = "solid 10px #383838";
 textArea.style.backgroundColor = "lightgrey";
 
-h2.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
+h2.style.fontFamily = "Special Elite, Courier, Serif";
 h2.style.fontFamily = "30pxrem";
 h2.style.textAlign = "center";
 h2.style.color = "#e1e1e1";
 
-password.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
+password.style.fontFamily = "Special Elite, Courier, Serif";
 password.style.fontSize = "20px";
 password.style.color = "black";
 
 btn.style.backgroundColor = "red";
+btn.style.color = "white";
 
-var agent = document.createElement("IMG");
-    agent.src = "assets/secretagent-removebgcropdk.png";
-    agent.style.width = "100%";
-    agent.style.maxWidth = "65rem";
-    agent.style.marginTop = "25px"
-    agent.style.display = "block";
-    agent.style.marginLeft = "auto";
-    agent.style.marginRight = "auto";
+footer.style.fontSize = "12px";
 
-    // agent.style.position = "fixed";
-    // agent.style.bottom = "0";
-    // agent.style.left = "0";
-    // agent.style.alignContent = "center";
 
-    wrap.appendChild(agent);
+
+
+//NOT WORKING YET
+// var agent = document.createElement("IMG");
+//     agent.src = "assets/pngkit_detective-hat-png_4291313.png";
+//     agent.style.width = "100%";
+//     agent.style.maxWidth = "35rem";
+//     agent.style.marginTop = "25px"
+//     agent.style.display = "block";
+//     agent.style.marginLeft = "auto";
+//     agent.style.marginRight = "auto";
+//     // agent.style.alignContent = "center";
+// wrap.appendChild(agent);
 
  
 //NOT WORKING YET    

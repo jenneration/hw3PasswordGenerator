@@ -14,7 +14,7 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-image: radial-gradient(#383838, #232323, #0d0d0d, #000);
 }
 
 .wrapper {
@@ -117,6 +117,25 @@ button[disabled] {
   resize: none;
   overflow: hidden;
 }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #383838;
+  color: white;
+  padding-top: 10px;
+  text-align: center;
+  height: 30px;
+}
+
+
+
+
+
+
+
 
 @media (max-width: 690px) {
   .btn {
