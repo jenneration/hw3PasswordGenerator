@@ -1,149 +1,180 @@
-console.log("I'm running");
+console.log("HELLO!");
 
-// Selected HTML
+//PART 1 - Password Generator
+
+// HTML for Password 
 var generateBtn = document.querySelector("#generate");
 var newPassword = document.querySelector("#password");
 
 // User input and password component variables
-var pwLength;
 var includeNumbers = "1234567890".split("");
 var includeUpper = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-var includeLower = "abcdefghijklmnopqrstuvwxyz".toLowerCase().split("");
-var includeSpecial = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
-// var pwArray = [];
+var includeLower = "abcdefghijklmnopqrstuvwxyz".split("");
+var includeSpecial = " !#$%&'()*+,-.:;<=>?@[]^_`{|}~".split("");
 
-// TEST ABOVE ARRAYS LOG
-console.log(includeNumbers);
-console.log(includeUpper);
-console.log(includeLower);
-console.log(includeSpecial);
+// TEST HOW ABOVE ARRAYS LOG
+// console.log(includeNumbers);
+// console.log(includeUpper);
+// console.log(includeLower);
+// console.log(includeSpecial);
 
-//Add event to generateBtn
+//Add event listener to generateBtn
 generateBtn.addEventListener("click", function(event) {
     event.preventDefault("");
     generatePassword();
 });
-    
+
+//Initiate user preference for password length
 function generatePassword() {
     //Ask user for password length; change input to NUMBER
-    var pwLength = parseInt(prompt("Choose a password length between 8 and 128."));
+    var pwLength = (prompt("Choose a password length between 8 and 128."));
 
-    //Create criteria array here to ensure previous criteria choices reset to empty;
-    var pwArray = [];
+    //Create empty criteria array/ensure previous criteria choices reset to empty;
+     var pwArray = [];
 
-    // Validate chosen password length
-    if (pwLength < 8 || pwLength > 128) {
-        alert("Error: That length is invalid. Start over and re-enter a valid password length from 8 to 128.");
-    }
-    //Validate password length entry only contains numbers
-    else if (pwLength != parseInt(pwLength)) {
-        alert("Error: You may have entered a non-number. Please re-enter a valid password length from 8 to 128.");
+    //Validate pwLength contains numbers only
+    // console.log(isNaN(pwLength));
+    // console.log(pwLength);
+    if (isNaN(pwLength) || pwLength < 8 || pwLength > 128) {
+        alert("HMMM...ERROR: Please re-enter a password length from 8 to 128.");
+        generatePassword();
+        return;
     } 
-    else {
-    //If above ok confirm additional password criteria 
-    var confirmNumbers = confirm("Should password contain numbers?");
-    var confirmUpper = confirm("Should password contain uppercase letters?");
-    var confirmLower = confirm("Should password contain lowercase letters?");
-    var confirmSpecial = confirm("Should password contain special characters?");
-    };   
+
+    console.log(pwLength);
+
+    //Function: ask for more password criteria, validates at least one selection, build up possible choices
+    var criteria = function askCriteria() {
    
-    //ISSUE : Validate at least one add'l criteria was chosen
+    // Confirm remaining user password criteria preference
+    var confirmNumbers = confirm("Should password contain numbers?");
+    var confirmUpper = confirm("Uppercase letters?");
+    var confirmLower = confirm("Lowercase letters?");
+    var confirmSpecial = confirm("Special characters?");
 
-    //if (!confirmNumbers && !confirmUpper && !confirmLower && !confirmSpecial) {
-    //NOTE: Find a shorter way to re-confirm
-    //alert ("You must choose at lease one character set for your password.")
-    //     var confirmNumbers = confirm("Should password contain numbers?");
-    //     var confirmUpper = confirm("Should password contain uppercase letters?");
-    //     var confirmLower = confirm("Should password contain lowercase letters?");
-    //     var confirmSpecial = confirm("Should password contain special characters?");
-    //}
-
-    //Build passwordArray criteria based on confirms
+    //Validate: If all negatives, alert and repeat criteria questioning
+    if (!confirmNumbers && !confirmUpper && !confirmLower && !confirmSpecial) {
+        alert("OOPS! You must choose at least one character criteria.")   
+        askCriteria();
+        return;
+        }
+    //Build array of confirmed criteria preferences
     if (confirmNumbers) {
-     pwArray = pwArray.concat(includeNumbers);
-     console.log(pwArray);
-    }
-
+        pwArray = pwArray.concat(includeNumbers);
+        console.log(pwArray);
+        }
+       
     if (confirmUpper) {
-    pwArray = pwArray.concat(includeUpper);
-    console.log(pwArray);
-    }
-
+        pwArray = pwArray.concat(includeUpper);
+        console.log(pwArray);
+        }
+       
     if (confirmLower) {
         pwArray = pwArray.concat(includeLower);
         console.log(pwArray);
-    }
-
+        }
+       
     if (confirmSpecial) {
         pwArray = pwArray.concat(includeSpecial);
         console.log(pwArray);
+        }
     }
 
-    //Check if defined
-    console.log(pwLength);
-
-    //This variable will hold password to be generated
+    //Call function for additional criteria
+    criteria();
+  
+    //Create variable for password. NOTE: put this here to clear cache for next generate
     var password = [];
 
-    //Loop through compiled array criteria and randomly choose indexes x pwLength desired
+    //Loop through compiled criteria and randomly choose indexes per pwLength desired
     for (var i = 0; i < pwLength ; i++) {
-        var pwRandom = pwArray[Math.floor(Math.random() * pwArray.length)];
-        
-        //Add random choices to password array
-        password.push(pwRandom);
-        console.log(password);
+    var pwRandom = pwArray[Math.floor(Math.random() * pwArray.length)];
+    // console.log(pwRandom); 
 
-        //Join password array emoving quotes, commas, whitespaces
-        passwordJoin = password.join("").replace(/\s+/g, '');
-        console.log(passwordJoin);
+    //Add random choices to password array
+    password.push(pwRandom);
+    console.log(password);
+    }  
 
-        //Print generated password to HMTL text area input
-        newPassword.innerText = passwordJoin;
-    }
-};
+    //Join password array emoving quotes, commas, whitespaces
+    passwordJoin = password.join("").replace(/\s+/g, '');
+    console.log(passwordJoin);
 
+    //Print generated password to HMTL text area input
+    newPassword.innerText = passwordJoin;      
+}
 
+//End of generator function
 
-//STYLING
-// var wrapper = document.querySelector(".wrapper");
-// wrapper.style.background-color = "black";
+//PART 2 - Styling HTML
 
-var wrap = document.querySelector(".wrapper");
-var h1 = document.querySelector("h1");
-var card = document.querySelector(".card");
-var cardBody = document.querySelector(".card-body");
-var cardHeader = document.querySelector(".card-header");
-var cardBtn = document.querySelector(".btn");
-
-
-
-
-wrap.setAttribute("style", "background-color: red");
-
-h1.setAttribute("style", "color: blue");
-
-
-
-
-
-
-//STYLING
-// var wrapper = document.querySelector(".wrapper");
-// wrapper.style.background-color = "black";
+// font-family: 'Josefin Slab', serif;
+// font-family: 'Special Elite', cursive;
 
 var wrap = document.querySelector(".wrapper");
 var h1 = document.querySelector("h1");
+var h2 = document.querySelector("h2");
 var card = document.querySelector(".card");
-var cardBody = document.querySelector(".card-body");
+var textArea = document.querySelector("textarea");
 var cardHeader = document.querySelector(".card-header");
+var password = document.querySelector("#password");
 var cardBtn = document.querySelector(".btn");
+var body = document.querySelector("body");
+var btn = document.querySelector(".btn");
 
 
+var bg = `background:radial-gradient(#383838, #232323, #0d0d0d, #000);`
+body.style.backgroundImage = "url('assets/toppng.com-un-barrel-png-james-bond-spiral-vector-800x578.png')";
+body.style.backgroundRepeat = "no-repeat";
+body.style.backgroundImage = "width:100%"
+body.style.backgroundSize = "cover";
 
+body.style.height = "100%"
+body.style.overflow = "hidden";
 
-wrap.setAttribute("style", "background-color: red");
+wrap.style.overflow = "hidden";
+h1.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
+h1.style.fontSize = "65px";
+h1.style.fontWeight = "800";
+h1.style.color = "red";
 
-h1.setAttribute("style", "color: blue");
+card.style.backgroundColor = "#0d0d0d";
+card.style.border = "solid 10px #383838";
+textArea.style.backgroundColor = "lightgrey";
+
+h2.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
+h2.style.fontFamily = "30pxrem";
+h2.style.textAlign = "center";
+h2.style.color = "#e1e1e1";
+
+password.style.fontFamily = "Special Elite, cursive, Courier, sansSerif";
+password.style.fontSize = "20px";
+password.style.color = "black";
+
+btn.style.backgroundColor = "red";
+
+var agent = document.createElement("IMG");
+    agent.src = "assets/secretagent-removebgcropdk.png";
+    agent.style.width = "100%";
+    agent.style.maxWidth = "65rem";
+    agent.style.marginTop = "25px"
+    agent.style.display = "block";
+    agent.style.marginLeft = "auto";
+    agent.style.marginRight = "auto";
+
+    // agent.style.position = "fixed";
+    // agent.style.bottom = "0";
+    // agent.style.left = "0";
+    // agent.style.alignContent = "center";
+
+    wrap.appendChild(agent);
+
+ 
+//NOT WORKING YET    
+// var footer = document.createElement("FOOTER");
+// footer.textContent = "HW3 Password Generator";
+// footer.setAttribute("style", "position:fixed; left:0, bottom:0, width:100%, background-color:red; color:white; text-align:center;")
+// wrap.appendChild(footer);
 
 
 
