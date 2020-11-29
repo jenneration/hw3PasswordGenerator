@@ -23,8 +23,8 @@ And a preference for characters to include in the password including upper and l
 
 # Submitted App
 
-https://github.com/jenneration/hw3PasswordGenerator
-https://jenneration.github.io/hw3PasswordGenerator/
+  https://github.com/jenneration/hw3PasswordGenerator
+  https://jenneration.github.io/hw3PasswordGenerator/
 
 ![password generator screenshot](assets/AppScreenShot.png)
 
