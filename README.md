@@ -27,5 +27,5 @@ And a preference for characters to include in the password including upper and l
   
   https://jenneration.github.io/hw3PasswordGenerator/
 
-![password generator screenshot](assets/AppScreenShot.png width: 300px)
+![password generator screenshot](assets/AppScreenShot.png)
 
