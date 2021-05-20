@@ -16,11 +16,6 @@ And a preference for characters to include in the password including upper and l
 
 - Application must be styled from the JS file.
 
-
-# Known Issues
-
-- Knowledge of html page styling from js file is limited so trying to get page to look exactly as envisioned, within time constraints, was not fully recognized.
-
 # Submitted App
 
   https://github.com/jenneration/hw3PasswordGenerator
